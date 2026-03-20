@@ -6,8 +6,25 @@ body,
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'Courier New', monospace;
     -webkit-tap-highlight-color: transparent;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #000033 100%);
+    color: #00ffff;
+}
+
+/* Theme color variables */
+:root {
+    --primary: #00ffff; /* Electric cyan */
+    --secondary: #ff00ff; /* Hot magenta */
+    --accent: #00ffff; /* Bright cyan */
+    --warning: #ffff00; /* Plasma yellow */
+    --background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #000033 100%);
+    --surface: rgba(10, 10, 10, 0.9);
+    --text-primary: #00ffff;
+    --text-secondary: #ff00ff;
+    --marked: #ff00ff;
+    --winning: #ffff00;
+    --border: 2px solid #00ffff;
 }
 
 /* Tailwind-like utility classes */
@@ -50,26 +67,26 @@ body {
 .mb-8 { margin-bottom: 2rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
-.bg-white { background-color: #ffffff; }
-.bg-gray-50 { background-color: #f9fafb; }
-.bg-gray-100 { background-color: #f3f4f6; }
-.bg-amber-100 { background-color: #fef3c7; }
-.bg-amber-200 { background-color: #fde68a; }
-.bg-accent { background-color: #2563eb; }
-.bg-marked { background-color: #dcfce7; }
-.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
+.bg-white { background-color: var(--surface); }
+.bg-gray-50 { background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 0, 51, 0.8) 100%); }
+.bg-gray-100 { background: linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(26, 0, 51, 0.7) 100%); }
+.bg-amber-100 { background-color: rgba(255, 255, 0, 0.8); }
+.bg-amber-200 { background-color: var(--warning); }
+.bg-accent { background-color: var(--primary); }
+.bg-marked { background-color: var(--marked); }
+.bg-black\/50 { background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(255, 255, 0, 0.5) 100%); }
 
-.text-white { color: #ffffff; }
-.text-gray-500 { color: #6b7280; }
-.text-gray-600 { color: #4b5563; }
-.text-gray-700 { color: #374151; }
-.text-gray-800 { color: #1f2937; }
-.text-gray-900 { color: #111827; }
-.text-green-600 { color: #16a34a; }
-.text-green-800 { color: #166534; }
-.text-amber-500 { color: #f59e0b; }
-.text-amber-800 { color: #92400e; }
-.text-amber-900 { color: #78350f; }
+.text-white { color: #ffffff; text-shadow: 0 0 5px #ffffff; }
+.text-gray-500 { color: var(--text-secondary); text-shadow: 0 0 5px var(--text-secondary); }
+.text-gray-600 { color: var(--text-secondary); text-shadow: 0 0 5px var(--text-secondary); }
+.text-gray-700 { color: var(--accent); text-shadow: 0 0 5px var(--accent); }
+.text-gray-800 { color: var(--accent); text-shadow: 0 0 5px var(--accent); }
+.text-gray-900 { color: var(--accent); text-shadow: 0 0 5px var(--accent); }
+.text-green-600 { color: var(--accent); text-shadow: 0 0 5px var(--accent); }
+.text-green-800 { color: var(--accent); text-shadow: 0 0 5px var(--accent); }
+.text-amber-500 { color: var(--warning); text-shadow: 0 0 5px var(--warning); }
+.text-amber-800 { color: var(--warning); text-shadow: 0 0 5px var(--warning); }
+.text-amber-900 { color: var(--warning); text-shadow: 0 0 5px var(--warning); }
 
 .text-xs { font-size: 0.75rem; line-height: 1rem; }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
@@ -84,19 +101,19 @@ body {
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 
-.border { border-width: 1px; }
-.border-b { border-bottom-width: 1px; }
-.border-gray-200 { border-color: #e5e7eb; }
-.border-gray-300 { border-color: #d1d5db; }
-.border-amber-400 { border-color: #fbbf24; }
-.border-marked-border { border-color: #22c55e; }
+.border { border: var(--border); }
+.border-b { border-bottom: var(--border); }
+.border-gray-200 { border-color: var(--accent); }
+.border-gray-300 { border-color: var(--accent); }
+.border-amber-400 { border-color: var(--warning); }
+.border-marked-border { border-color: var(--marked); }
 
-.rounded { border-radius: 0.25rem; }
-.rounded-lg { border-radius: 0.5rem; }
-.rounded-xl { border-radius: 0.75rem; }
+.rounded { border-radius: 0; }
+.rounded-lg { border-radius: 0; }
+.rounded-xl { border-radius: 0; }
 
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 255, 255, 0.8); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 255, 255, 0.5), 0 10px 10px -5px rgba(255, 0, 255, 0.3); }
 
 .space-y-2 > * + * { margin-top: 0.5rem; }
 
@@ -129,6 +146,76 @@ button {
 
 button:disabled {
     cursor: default;
+}
+
+/* Cyberpunk galaxy effects */
+.bg-marked {
+    box-shadow: 0 0 20px var(--marked), 0 0 40px var(--marked), 0 0 60px var(--marked);
+}
+
+.bg-amber-200 {
+    box-shadow: 0 0 20px var(--warning), 0 0 40px var(--warning), 0 0 60px var(--warning);
+    animation: plasma 1s infinite alternate;
+}
+
+@keyframes plasma {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.btn {
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--secondary);
+    box-shadow: 0 0 20px var(--secondary), 0 0 40px var(--secondary), 0 0 60px var(--secondary);
+}
+
+.btn:active {
+    background-color: var(--warning);
+    box-shadow: 0 0 30px var(--warning), 0 0 60px var(--warning), 0 0 90px var(--warning);
+}
+
+/* Neon scanline effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 255, 0.05),
+        rgba(0, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Add starfield effect */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                      radial-gradient(2px 2px at 40px 70px, #00ffff, transparent),
+                      radial-gradient(1px 1px at 90px 40px, #ff00ff, transparent),
+                      radial-gradient(1px 1px at 130px 80px, #ffff00, transparent),
+                      radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.3;
 }
 
 .wrap-break-word {

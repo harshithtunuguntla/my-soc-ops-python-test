@@ -8,7 +8,7 @@
         hx-swap="outerHTML"
         {% endif %}
         {% if square.is_free_space %}disabled{% endif %}
-        class="relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight
+        class="square relative flex items-center justify-center p-1 text-center border border-gray-300 rounded transition-all duration-150 select-none min-h-[60px] text-xs leading-tight
         {%- if square.is_marked %}
             {%- if is_winning %} bg-amber-200 border-amber-400 text-amber-900
             {%- else %} bg-marked border-marked-border text-green-800
