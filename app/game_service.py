@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+from app.data import TECH_LIFE_QUESTIONS
 from app.game_logic import (
     check_bingo,
     generate_board,
@@ -26,11 +27,14 @@ class GameSession:
     def has_bingo(self) -> bool:
         return self.game_state == GameState.BINGO
 
-    def start_game(self) -> None:
-        self.board = generate_board()
+    def start_game(self, questions: list[str] | None = None) -> None:
+        self.board = generate_board(questions)
         self.winning_line = None
         self.game_state = GameState.PLAYING
         self.show_bingo_modal = False
+
+    def start_techlife_game(self) -> None:
+        self.start_game(TECH_LIFE_QUESTIONS)
 
     def handle_square_click(self, square_id: int) -> None:
         if self.game_state != GameState.PLAYING:

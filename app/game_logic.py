@@ -8,13 +8,21 @@ BOARD_SIZE = 5
 CENTER_INDEX = 12  # 5x5 grid, center is index 12 (row 2, col 2)
 
 
-def generate_board() -> list[BingoSquareData]:
-    """Generate a new 5x5 bingo board."""
-    questions = iter(random.sample(QUESTIONS, 24))
+def generate_board(
+    questions: list[str] | None = None,
+) -> list[BingoSquareData]:
+    """Generate a new 5x5 bingo board.
+
+    Args:
+        questions: Optional list of questions to use. Defaults to the standard
+            QUESTIONS pool. Must contain at least 24 entries.
+    """
+    pool = questions if questions is not None else QUESTIONS
+    sampled = iter(random.sample(pool, 24))
     return [
         BingoSquareData(id=i, text=FREE_SPACE, is_marked=True, is_free_space=True)
         if i == CENTER_INDEX
-        else BingoSquareData(id=i, text=next(questions))
+        else BingoSquareData(id=i, text=next(sampled))
         for i in range(BOARD_SIZE * BOARD_SIZE)
     ]
 

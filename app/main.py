@@ -45,6 +45,15 @@ async def start_game(request: Request) -> Response:
     )
 
 
+@app.post("/start-techlife", response_class=HTMLResponse)
+async def start_techlife_game(request: Request) -> Response:
+    session = _get_game_session(request)
+    session.start_techlife_game()
+    return templates.TemplateResponse(
+        request, "components/game_screen.html", {"session": session}
+    )
+
+
 @app.post("/toggle/{square_id}", response_class=HTMLResponse)
 async def toggle_square(request: Request, square_id: int) -> Response:
     session = _get_game_session(request)

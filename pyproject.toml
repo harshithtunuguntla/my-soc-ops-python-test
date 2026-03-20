@@ -33,3 +33,10 @@ testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
 include = ["app", "tests"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.0.2",
+    "ruff>=0.15.7",
+]
