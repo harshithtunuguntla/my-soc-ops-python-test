@@ -39,13 +39,10 @@ jobs:
           # Create _site directory
           mkdir -p ./_site/app/static
 
-          # Copy docs (workshop walkthrough) to root
-          cp -r docs/* ./_site/
-
           # Copy static assets
           cp -r app/static/* ./_site/app/static/
 
-          # Render the start screen as a static page for GitHub Pages
+          # Render the start screen as the main page for GitHub Pages
           uv run python -c "
           from jinja2 import Environment, FileSystemLoader
           from app.models import GameState
@@ -61,10 +58,10 @@ jobs:
           full_html = template.render(
               session=session,
               GameState=GameState,
-              url_for=lambda name, path='': f'/agent-lab-python/app/static/{path}' if name == 'static' else path,
+              url_for=lambda name, path='': f'/app/static/{path}' if name == 'static' else path,
           )
 
-          with open('_site/app/index.html', 'w') as f:
+          with open('_site/index.html', 'w') as f:
               f.write(full_html)
           "
           
