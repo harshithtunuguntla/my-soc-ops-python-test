@@ -13,10 +13,29 @@
             </ul>
         </div>
 
+        <!-- Persona selector for Tech Life Bingo -->
+        <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200 mb-6 text-left">
+            <label for="persona-select" class="block text-sm font-semibold text-gray-700 mb-2">
+                🖥️ Tech Life Bingo persona <span class="font-normal text-gray-400">(optional)</span>
+            </label>
+            <select id="persona-select" name="persona"
+                class="w-full border border-gray-300 rounded px-3 py-2 text-sm text-gray-700 bg-white">
+                <option value="">— Classic Soc Ops (no persona) —</option>
+                {% for key, label in persona_options.items() %}
+                <option value="{{ key }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+            <p class="text-xs text-gray-400 mt-1">
+                Choosing a persona gives you tech-themed questions tailored to your role.
+            </p>
+        </div>
+
         <button
+            id="start-btn"
             hx-post="/start"
             hx-target="#game-container"
             hx-swap="outerHTML"
+            hx-include="#persona-select"
             class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors btn">
             Start Game
         </button>

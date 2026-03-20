@@ -3,10 +3,12 @@ from dataclasses import dataclass, field
 from app.game_logic import (
     check_bingo,
     generate_board,
+    generate_board_for_persona,
     get_winning_square_ids,
     toggle_square,
 )
 from app.models import BingoLine, BingoSquareData, GameState
+from app.tech_life_data import BoardPersona
 
 
 @dataclass
@@ -17,6 +19,7 @@ class GameSession:
     board: list[BingoSquareData] = field(default_factory=list)
     winning_line: BingoLine | None = None
     show_bingo_modal: bool = False
+    persona: str = ""
 
     @property
     def winning_square_ids(self) -> set[int]:
@@ -26,8 +29,20 @@ class GameSession:
     def has_bingo(self) -> bool:
         return self.game_state == GameState.BINGO
 
-    def start_game(self) -> None:
-        self.board = generate_board()
+    def start_game(self, persona: str = "") -> None:
+        """Start a new game, optionally using a Tech Life persona preset.
+
+        Args:
+            persona: A persona key (e.g. ``"backend_engineer"``).  When
+                provided the board is generated from Tech Life question pools
+                biased toward the chosen persona.  Pass an empty string (the
+                default) to use the original generic question pool.
+        """
+        self.persona = persona
+        if persona:
+            self.board = generate_board_for_persona(persona)
+        else:
+            self.board = generate_board()
         self.winning_line = None
         self.game_state = GameState.PLAYING
         self.show_bingo_modal = False
@@ -49,6 +64,7 @@ class GameSession:
         self.board = []
         self.winning_line = None
         self.show_bingo_modal = False
+        self.persona = ""
 
     def dismiss_modal(self) -> None:
         self.show_bingo_modal = False
@@ -64,3 +80,11 @@ def get_session(session_id: str) -> GameSession:
     if session_id not in _sessions:
         _sessions[session_id] = GameSession()
     return _sessions[session_id]
+
+
+PERSONA_DISPLAY_NAMES: dict[str, str] = {
+    BoardPersona.DEFAULT: "Default (all categories)",
+    BoardPersona.BACKEND_ENGINEER: "Backend Engineer",
+    BoardPersona.FRONTEND_ENGINEER: "Frontend Engineer",
+    BoardPersona.TOOLING_DEVOPS: "Tooling / DevOps",
+}

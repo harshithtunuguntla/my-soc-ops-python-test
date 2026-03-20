@@ -14,6 +14,7 @@
 ## ✨ Features
 
 - **Interactive Bingo Boards**: Dynamic bingo cards with fun, engaging questions
+- **Tech Life Bingo Personas**: Role-based question sets for tech events (see below)
 - **Real-time Scoring**: Track your progress and celebrate wins
 - **Social Mixer Focus**: Designed for in-person events to help people connect
 - **Responsive Design**: Works great on desktop and mobile devices
@@ -42,9 +43,45 @@ uv run uvicorn app.main:app --reload
 
 Open [http://localhost:8000](http://localhost:8000) in your browser and start playing! 🎲
 
+## 🖥️ Tech Life Bingo Personas
+
+When you open the game you will see an optional **persona** dropdown on the
+start screen.  Choosing a persona switches the board to **Tech Life Bingo** –
+questions drawn from developer-focused categories instead of the generic
+icebreaker pool.
+
+### Available personas
+
+| Persona key | Display name | Bias |
+|---|---|---|
+| *(empty)* | Classic Soc Ops | Generic icebreaker questions (default) |
+| `default` | Default (all categories) | Equal mix of all three tech categories |
+| `backend_engineer` | Backend Engineer | Heavy coding-habits, moderate dev-culture |
+| `frontend_engineer` | Frontend Engineer | Heavy IDE/tooling, moderate coding-habits |
+| `tooling_devops` | Tooling / DevOps | Heavy dev-culture, moderate IDE preferences |
+
+### Question categories
+
+- **coding_habits** – TDD, commit hygiene, pair programming, etc.
+- **ide_preferences** – VS Code, Vim, extensions, themes, etc.
+- **dev_culture** – open source, conferences, code review, podcasts, etc.
+
+### Selecting a persona via the API
+
+You can also send the persona directly as a query parameter:
+
+```bash
+# Start a backend-engineer-flavoured game
+curl -X POST "http://localhost:8000/start?persona=backend_engineer" \
+     -H "Cookie: session=<your-session-cookie>"
+```
+
+Invalid values are silently ignored and fall back to the `default` Tech Life
+persona.
+
 ---
 
-## 📚 Workshop Lab Guide
+
 
 This project is part of a comprehensive workshop on building with GitHub Copilot. Follow the guided steps to learn modern development practices:
 
