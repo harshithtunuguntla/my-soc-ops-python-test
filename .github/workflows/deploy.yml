@@ -58,7 +58,7 @@ jobs:
           full_html = template.render(
               session=session,
               GameState=GameState,
-              url_for=lambda name, path='': f'/app/static/{path}' if name == 'static' else path,
+              url_for=lambda name, path='': f'/my-soc-ops-python-test/app/static/{path}' if name == 'static' else path,
           )
 
           with open('_site/index.html', 'w') as f:
