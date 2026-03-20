@@ -248,3 +248,227 @@ body::after {
 .animate-\[bounce_0\.5s_ease-out\] {
     animation: bounce 0.5s ease-out;
 }
+
+/* ===== START SCREEN — Cinematic Hero Landing ===== */
+
+/* Full-viewport hero wrapper */
+.start-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.5rem 3rem;
+    overflow: hidden;
+}
+
+/* Circuit-grid atmospheric overlay */
+.hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Radial vignette to focus the eye toward center */
+.hero-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, transparent 25%, rgba(0, 0, 0, 0.75) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---------- Hero section ---------- */
+.hero-section {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 3rem;
+    animation: start-reveal 0.7s ease-out both;
+}
+
+/* Eyebrow badge */
+.hero-badge {
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    text-shadow: 0 0 8px var(--secondary);
+    border: 1px solid var(--secondary);
+    box-shadow: 0 0 12px var(--secondary), inset 0 0 8px rgba(255, 0, 255, 0.1);
+    padding: 0.3rem 1.1rem;
+    margin-bottom: 1.75rem;
+    animation: start-reveal 0.6s ease-out 0.1s both;
+}
+
+/* Giant logotype */
+.hero-title {
+    font-size: clamp(4.5rem, 22vw, 9rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 0.85;
+    margin: 0 0 1.1rem;
+    animation: start-reveal 0.7s ease-out 0.2s both;
+}
+
+.hero-title-soc {
+    color: var(--primary);
+    text-shadow: 0 0 18px var(--primary), 0 0 40px var(--primary), 0 0 70px var(--primary);
+}
+
+.hero-title-ops {
+    color: var(--secondary);
+    text-shadow: 0 0 18px var(--secondary), 0 0 40px var(--secondary), 0 0 70px var(--secondary);
+}
+
+/* Tagline */
+.hero-subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 255, 0.65);
+    margin: 0 0 1.5rem;
+    animation: start-reveal 0.6s ease-out 0.32s both;
+}
+
+/* Glowing divider line */
+.hero-divider {
+    width: 55%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 8px var(--primary);
+    margin-bottom: 2.25rem;
+    animation: start-reveal 0.5s ease-out 0.4s both;
+}
+
+/* Primary CTA */
+.hero-cta {
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 1rem 2.75rem;
+    width: 100%;
+    max-width: 320px;
+    background: transparent;
+    animation: start-reveal 0.6s ease-out 0.5s both;
+}
+
+.hero-cta:focus-visible {
+    outline: 2px solid var(--warning);
+    outline-offset: 4px;
+}
+
+/* Sub-hint beneath CTA */
+.hero-hint {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(0, 255, 255, 0.35);
+    margin: 0.85rem 0 0;
+    animation: start-reveal 0.5s ease-out 0.6s both;
+}
+
+/* ---------- How to play section ---------- */
+.how-to-play {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    animation: start-reveal 0.6s ease-out 0.7s both;
+}
+
+.how-to-play__title {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    text-shadow: 0 0 8px var(--secondary);
+    text-align: center;
+    margin: 0 0 1.1rem;
+}
+
+.how-to-play__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.how-to-play__step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    background: rgba(0, 255, 255, 0.03);
+    animation: start-reveal 0.5s ease-out both;
+}
+
+.how-to-play__step:nth-child(1) { animation-delay: 0.78s; }
+.how-to-play__step:nth-child(2) { animation-delay: 0.88s; }
+.how-to-play__step:nth-child(3) { animation-delay: 0.98s; }
+
+.step-num {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--secondary);
+    text-shadow: 0 0 10px var(--secondary);
+    min-width: 2rem;
+    flex-shrink: 0;
+}
+
+.step-text {
+    font-size: 0.85rem;
+    color: rgba(0, 255, 255, 0.8);
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* Load-reveal keyframes */
+@keyframes start-reveal {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Desktop scaling ---------- */
+@media (min-width: 640px) {
+    .start-hero {
+        padding: 4rem 2rem 5rem;
+    }
+
+    .hero-cta {
+        width: auto;
+    }
+
+    .how-to-play__steps {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .how-to-play__step {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 0.75rem;
+    }
+
+    .step-text {
+        text-align: center;
+    }
+}

@@ -1,25 +1,54 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+<main class="start-hero">
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
-            </ul>
-        </div>
+    <!-- Atmospheric overlays -->
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <!-- Hero section -->
+    <section class="hero-section" aria-labelledby="hero-title">
+
+        <div class="hero-badge" aria-hidden="true">// SOCIAL BINGO //</div>
+
+        <h1 id="hero-title" class="hero-title">
+            <span class="hero-title-soc">SOC</span><span class="hero-title-ops">OPS</span>
+        </h1>
+
+        <p class="hero-subtitle">Connect &middot; Discover &middot; Win</p>
+
+        <div class="hero-divider" aria-hidden="true"></div>
 
         <button
             hx-post="/start"
             hx-target="#game-container"
             hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors btn">
+            class="hero-cta btn"
+            autofocus>
             Start Game
         </button>
-    </div>
-</div>
+
+        <p class="hero-hint">Find 5 in a row to win</p>
+
+    </section>
+
+    <!-- How to play section -->
+    <section class="how-to-play" aria-labelledby="how-title">
+        <h2 id="how-title" class="how-to-play__title">How to play</h2>
+        <ol class="how-to-play__steps">
+            <li class="how-to-play__step">
+                <span class="step-num" aria-hidden="true">01</span>
+                <span class="step-text">Find people who match the questions</span>
+            </li>
+            <li class="how-to-play__step">
+                <span class="step-num" aria-hidden="true">02</span>
+                <span class="step-text">Tap a square when you find a match</span>
+            </li>
+            <li class="how-to-play__step">
+                <span class="step-num" aria-hidden="true">03</span>
+                <span class="step-text">Get 5 in a row to win!</span>
+            </li>
+        </ol>
+    </section>
+
+</main>
 </div>
