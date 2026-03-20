@@ -68,3 +68,21 @@ class TestDismissModal:
         response = client.post("/dismiss-modal")
         assert response.status_code == 200
         assert "FREE SPACE" in response.text
+
+
+class TestTechLifeBingo:
+    def test_start_techlife_returns_game_board(self, client: TestClient) -> None:
+        client.get("/")
+        response = client.post("/start-techlife")
+        assert response.status_code == 200
+        assert "FREE SPACE" in response.text
+        assert "← Back" in response.text
+
+    def test_techlife_board_has_25_squares(self, client: TestClient) -> None:
+        client.get("/")
+        response = client.post("/start-techlife")
+        assert response.text.count('hx-post="/toggle/') == 24
+
+    def test_start_screen_has_techlife_button(self, client: TestClient) -> None:
+        response = client.get("/")
+        assert "Tech Life Bingo" in response.text

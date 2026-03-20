@@ -28,3 +28,39 @@ QUESTIONS: Final[list[str]] = [
     "has read a book this month",
     "knows sign language",
 ]
+
+TECH_LIFE_QUESTIONS: Final[list[str]] = [
+    # Coding habits
+    "uses spaces, not tabs",
+    "writes tests before code",
+    "has committed directly to main",
+    "names variables with single letters",
+    "leaves TODO comments in code",
+    "commits multiple times a day",
+    "has broken the build today",
+    "reads the error message before Googling",
+    "reviews their own PR before submitting",
+    "writes docstrings for every function",
+    # IDE / editor preferences
+    "uses dark mode exclusively",
+    "uses Vim or Neovim as primary editor",
+    "knows at least 5 keyboard shortcuts by heart",
+    "has more than 10 extensions installed",
+    "uses a custom color theme",
+    "auto-formats code on save",
+    "uses a split-screen editor layout",
+    "uses an AI coding assistant",
+    "has tried pair programming this week",
+    "uses a linter on every project",
+    # Developer culture
+    "has given a code review today",
+    "attends standup without a status update",
+    "has written a post-mortem document",
+    "reads release notes for dependencies",
+    "has refactored code without a ticket",
+    "has skipped writing docs at least once",
+    "has blamed a bug on a library",
+    "keeps a personal README or dev journal",
+    "participates in open source",
+    "has rewritten something from scratch",
+]

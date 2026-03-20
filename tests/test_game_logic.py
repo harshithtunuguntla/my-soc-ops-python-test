@@ -1,4 +1,4 @@
-from app.data import FREE_SPACE, QUESTIONS
+from app.data import FREE_SPACE, QUESTIONS, TECH_LIFE_QUESTIONS
 from app.game_logic import (
     CENTER_INDEX,
     check_bingo,
@@ -132,3 +132,33 @@ class TestGetWinningSquareIds:
     def test_returns_square_ids(self) -> None:
         line = BingoLine(type="row", index=0, squares=[0, 1, 2, 3, 4])
         assert get_winning_square_ids(line) == {0, 1, 2, 3, 4}
+
+
+class TestTechLifeQuestions:
+    def test_tech_life_question_bank_has_enough_questions(self) -> None:
+        assert len(TECH_LIFE_QUESTIONS) >= 24
+
+    def test_tech_life_questions_are_strings(self) -> None:
+        assert all(isinstance(q, str) and q for q in TECH_LIFE_QUESTIONS)
+
+    def test_tech_life_questions_no_duplicates(self) -> None:
+        assert len(TECH_LIFE_QUESTIONS) == len(set(TECH_LIFE_QUESTIONS))
+
+    def test_generate_board_with_tech_life_questions(self) -> None:
+        board = generate_board(TECH_LIFE_QUESTIONS)
+        assert len(board) == 25
+
+    def test_tech_life_board_center_is_free_space(self) -> None:
+        board = generate_board(TECH_LIFE_QUESTIONS)
+        center = board[CENTER_INDEX]
+        assert center.is_free_space is True
+        assert center.text == FREE_SPACE
+
+    def test_tech_life_board_questions_from_pool(self) -> None:
+        board = generate_board(TECH_LIFE_QUESTIONS)
+        texts = {s.text for s in board if not s.is_free_space}
+        assert texts.issubset(set(TECH_LIFE_QUESTIONS))
+
+    def test_tech_life_questions_disjoint_from_standard(self) -> None:
+        """Tech Life questions should not overlap with the standard question bank."""
+        assert not set(TECH_LIFE_QUESTIONS) & set(QUESTIONS)
