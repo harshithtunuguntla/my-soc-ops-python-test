@@ -1,0 +1,41 @@
+<div id="team-game-container">
+<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
+    <div class="text-center max-w-sm w-full">
+        <a href="/team" class="inline-block text-gray-400 text-sm mb-6">← Team Lobby</a>
+
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Tech Life Bingo</h1>
+        <p class="text-lg text-gray-600 mb-2">Team Mode</p>
+
+        <!-- Team code badge -->
+        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-6">
+            <p class="text-xs text-gray-400 uppercase tracking-wide mb-1">Session Code</p>
+            <p class="text-3xl font-mono font-bold text-gray-900 tracking-widest">{{ team_session.team_code }}</p>
+            <p class="text-xs text-gray-400 mt-1">Share this code with your team</p>
+        </div>
+
+        <!-- Participant count -->
+        <div class="flex items-center justify-center gap-2 mb-8">
+            <span class="text-gray-500 text-sm">👥</span>
+            <span class="text-gray-700 text-sm font-medium">{{ team_session.participant_count }} {{ "participant" if team_session.participant_count == 1 else "participants" }} joined</span>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
+            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
+            <ul class="text-left text-gray-600 text-sm space-y-2">
+                <li>• Share the session code with your team</li>
+                <li>• Everyone plays on the same board</li>
+                <li>• Find devs who match the squares</li>
+                <li>• Get 5 in a row to win!</li>
+            </ul>
+        </div>
+
+        <button
+            hx-post="/team/{{ team_session.team_code }}/start"
+            hx-target="#team-game-container"
+            hx-swap="outerHTML"
+            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors btn">
+            Start Game
+        </button>
+    </div>
+</div>
+</div>
