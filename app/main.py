@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
 
-from app.game_service import GameSession, get_session
+from app.game_service import PERSONA_DISPLAY_NAMES, GameSession, get_session
 from app.models import GameState
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -32,14 +32,27 @@ async def home(request: Request) -> Response:
     return templates.TemplateResponse(
         request,
         "home.html",
-        {"session": session, "GameState": GameState},
+        {
+            "session": session,
+            "GameState": GameState,
+            "persona_options": PERSONA_DISPLAY_NAMES,
+        },
     )
 
 
 @app.post("/start", response_class=HTMLResponse)
-async def start_game(request: Request) -> Response:
+async def start_game(request: Request, persona: str = "") -> Response:
+    """Start a new game.
+
+    Query parameter:
+        persona: Optional Tech Life persona key.  Accepted values are
+            ``default``, ``backend_engineer``, ``frontend_engineer``, and
+            ``tooling_devops``.  An empty string (the default) uses the
+            original generic question pool.  Unknown values fall back to the
+            ``default`` Tech Life persona.
+    """
     session = _get_game_session(request)
-    session.start_game()
+    session.start_game(persona)
     return templates.TemplateResponse(
         request, "components/game_screen.html", {"session": session}
     )
@@ -61,7 +74,11 @@ async def reset_game(request: Request) -> Response:
     return templates.TemplateResponse(
         request,
         "components/start_screen.html",
-        {"session": session, "GameState": GameState},
+        {
+            "session": session,
+            "GameState": GameState,
+            "persona_options": PERSONA_DISPLAY_NAMES,
+        },
     )
 
 

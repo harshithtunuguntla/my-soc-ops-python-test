@@ -40,6 +40,24 @@ class TestStartGame:
         # Count the toggle buttons (squares with hx-post="/toggle/")
         assert response.text.count('hx-post="/toggle/') == 24  # 24 + 1 free space
 
+    def test_start_with_valid_persona(self, client: TestClient) -> None:
+        client.get("/")
+        response = client.post("/start?persona=backend_engineer")
+        assert response.status_code == 200
+        assert "FREE SPACE" in response.text
+
+    def test_start_with_invalid_persona_falls_back(self, client: TestClient) -> None:
+        """Invalid persona should be silently accepted, falling back to default."""
+        client.get("/")
+        response = client.post("/start?persona=totally_invalid")
+        assert response.status_code == 200
+        assert "FREE SPACE" in response.text
+
+    def test_home_contains_persona_selector(self, client: TestClient) -> None:
+        response = client.get("/")
+        assert "persona-select" in response.text
+        assert "Backend Engineer" in response.text
+
 
 class TestToggleSquare:
     def test_toggle_marks_square(self, client: TestClient) -> None:
