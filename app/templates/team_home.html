@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
+    <div class="text-center max-w-sm w-full">
+        <a href="/" class="inline-block text-gray-400 text-sm mb-6">← Solo Mode</a>
+
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Team Mode</h1>
+        <p class="text-gray-600 mb-8">Share a board with your whole team</p>
+
+        {% if error %}
+        <div class="bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 mb-6 text-sm">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Create a new session -->
+        <form method="post" action="/team/create">
+            <button type="submit"
+                class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors btn mb-6">
+                Create New Session
+            </button>
+        </form>
+
+        <div class="flex items-center gap-3 mb-6">
+            <div class="flex-1 border-t border-gray-200"></div>
+            <span class="text-gray-400 text-sm">or join existing</span>
+            <div class="flex-1 border-t border-gray-200"></div>
+        </div>
+
+        <!-- Join an existing session -->
+        <form method="post" action="/team/join" class="flex gap-2">
+            <input
+                type="text"
+                name="team_code"
+                placeholder="Session code"
+                maxlength="6"
+                required
+                class="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-center text-lg font-mono uppercase tracking-widest focus:outline-none focus:border-accent">
+            <button type="submit"
+                class="bg-gray-800 text-white font-semibold px-5 py-3 rounded-lg active:bg-gray-700 transition-colors btn">
+                Join
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

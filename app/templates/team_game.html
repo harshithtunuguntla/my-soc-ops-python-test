@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if team_session.game_state == GameState.START %}
+    {% include "components/team_start_screen.html" %}
+{% else %}
+    {% include "components/team_game_screen.html" %}
+{% endif %}
+{% endblock %}
