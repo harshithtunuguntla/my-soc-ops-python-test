@@ -1,25 +1,55 @@
 <div id="game-container">
-<div class="flex flex-col items-center justify-center min-h-full p-6 bg-gray-50">
-    <div class="text-center max-w-sm">
-        <h1 class="text-4xl font-bold text-gray-900 mb-2">Soc Ops</h1>
-        <p class="text-lg text-gray-600 mb-8">Social Bingo</p>
+<div class="sc-c-shell">
+    <!-- Decorative orbital rings for depth -->
+    <div class="sc-c-ring sc-c-ring--1" aria-hidden="true"></div>
+    <div class="sc-c-ring sc-c-ring--2" aria-hidden="true"></div>
 
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
-            <h2 class="font-semibold text-gray-800 mb-3">How to play</h2>
-            <ul class="text-left text-gray-600 text-sm space-y-2">
-                <li>• Find people who match the questions</li>
-                <li>• Tap a square when you find a match</li>
-                <li>• Get 5 in a row to win!</li>
-            </ul>
+    <main class="sc-c-content">
+
+        <!-- ── Hero ── -->
+        <header class="sc-c-hero" role="banner">
+            <span class="sc-c-eyebrow">&#127881; Icebreaker Bingo</span>
+            <h1 class="sc-c-headline">Find Your<br>People</h1>
+            <p class="sc-c-subline">Meet everyone in the room &mdash; one square at a time.</p>
+        </header>
+
+        <!-- ── How to play ── -->
+        <section class="sc-c-steps" aria-label="How to play">
+            <div class="sc-c-step sc-c-step--1">
+                <span class="sc-c-step-num" aria-hidden="true">01</span>
+                <div class="sc-c-step-body">
+                    <strong>Spot a match</strong>
+                    <p>Find someone who fits a square&rsquo;s question</p>
+                </div>
+            </div>
+            <div class="sc-c-step sc-c-step--2">
+                <span class="sc-c-step-num" aria-hidden="true">02</span>
+                <div class="sc-c-step-body">
+                    <strong>Tap &amp; claim</strong>
+                    <p>Mark the square before anyone else does</p>
+                </div>
+            </div>
+            <div class="sc-c-step sc-c-step--3">
+                <span class="sc-c-step-num" aria-hidden="true">03</span>
+                <div class="sc-c-step-body">
+                    <strong>5&nbsp;in a row wins</strong>
+                    <p>First to complete a line shouts Bingo!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA ── -->
+        <div class="sc-c-cta">
+            <button
+                hx-post="/start"
+                hx-target="#game-container"
+                hx-swap="outerHTML"
+                class="sc-c-btn btn">
+                Let&rsquo;s Play &#8594;
+            </button>
+            <p class="sc-c-hint">takes &lt;1&nbsp;min to begin &middot; no sign-up needed</p>
         </div>
 
-        <button
-            hx-post="/start"
-            hx-target="#game-container"
-            hx-swap="outerHTML"
-            class="w-full bg-accent text-white font-semibold py-4 px-8 rounded-lg text-lg active:bg-accent-light transition-colors btn">
-            Start Game
-        </button>
-    </div>
+    </main>
 </div>
 </div>
